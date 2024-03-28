@@ -20,4 +20,10 @@ export class MovieService {
     }).pipe(map((response) =>  response.results));
   }
 
+  getMovie(id : string): Observable<MovieListObject> {
+    return this.httpClient.get<MovieListObject>(`${this.baseUrl}/movie/${id}`, {
+      params: this.requiredParams
+    })
+  }
+
 }
