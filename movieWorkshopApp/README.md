@@ -15,6 +15,6 @@
 3. Create a function inside `movie.service.ts` called `getMovies()` that will call the API and fetch popular movies. Use the api key and the URL provided below. Pass the api key as parameter in the GET request. The function should return an Observable of type `MovieListObject`.
 4. Use this service in your `MovieListComponent` and call the `getMovies()` function and try subscribing it and console logging the result to see if the service works.
 
-TMDB API usage docs: https://developer.themoviedb.org/reference/intro/getting-started
-Popular movies endpoint: https://api.themoviedb.org/3/movie/popular
-API Key: 'bc3cbb180a0ca2a35eb2d9c278f6d3b3'
+- TMDB API usage docs: https://developer.themoviedb.org/reference/intro/getting-started
+- Popular movies endpoint: https://api.themoviedb.org/3/movie/popular
+- API Key: 'bc3cbb180a0ca2a35eb2d9c278f6d3b3'
