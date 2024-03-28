@@ -38,3 +38,18 @@ The movies component should be displayed at /movies endpoint.
 1. Configure `app.component.html` to not directly use `app-movie-list` and configure your routes file to have `/movies` path which displays your movie component.
 2. Configure the routes so that an empty route also loads the movie component.
 3. Add a component that displays page not found error when you try to go to a route that doesn't exist. ( e.g going to `localhost:4200/shows` should show this not found component ).
+
+# Task 5
+
+## Show Movie details
+
+Upon clicking the poster image, additional details about the movie should be shown.
+
+1. Add a new component `movie-details` which would be used to show the movie details. 
+2. In the `movie.service` file add another function `getMovie` that takes an id as param and returns a single movie object based on the given id.
+3. Configure your `MovieListCmponent` to add id of the selected movie upon clicking the poster image.
+4. Update your routes to display MovieListComponent when we go to `/movies/movie/id` where id is the selected movie's id.
+5. Now create a `movie$` observable which holds the detail from the `getMovie` function in your service and get the id from your route and initialise `movie$` with the value returned by the function (Hint: Look into how you can use `ActivatedRoute` to get stuff from the route). 
+6. Add some additional details about the movie for e.g. description and add a close button to this component so that you can use it to close and go back to the `/movies` route and display the movie list again.
+
+!! As always make this look pretty using some styling magic for some brownie points !!
