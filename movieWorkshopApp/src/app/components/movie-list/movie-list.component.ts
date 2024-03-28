@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
+import { Observable } from 'rxjs';
+import { MovieListObject } from '../../types';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './movie-list.component.html',
-  styleUrl: './movie-list.component.scss'
+  styleUrls: ['./movie-list.component.scss', '../../app.component.scss' ]
 })
 export class MovieListComponent {
-constructor(private movieService : MovieService){
-  this.movieService.getMovies().subscribe((res) => console.log(res));
-}
+  movies$: Observable<MovieListObject[]>
 
+constructor(private movieService : MovieService){
+  this.movies$ = this.movieService.getMovies();
+}
 
 }
