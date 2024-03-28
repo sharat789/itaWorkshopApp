@@ -28,3 +28,13 @@ API Key: 'bc3cbb180a0ca2a35eb2d9c278f6d3b3'
 3. Use the for (control flow syntax) and display the `original_title` and `poster_path` attributes in your HTML. (Hint: append the `poster_path` to this URL to display the poster for the movies : https://image.tmdb.org/t/p/w200).
 
 !! Bonus point for adding styling and make the list look nice ( You are free to use plain CSS or frameworks like Bootstrap or Tailwind ). !!
+
+# Task 4
+
+## Add routing
+
+The movies component should be displayed at /movies endpoint.
+
+1. Configure `app.component.html` to not directly use `app-movie-list` and configure your routes file to have `/movies` path which displays your movie component.
+2. Configure the routes so that an empty route also loads the movie component.
+3. Add a component that displays page not found error when you try to go to a route that doesn't exist. ( e.g going to `localhost:4200/shows` should show this not found component ).
