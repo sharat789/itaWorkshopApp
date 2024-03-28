@@ -26,3 +26,5 @@ API Key: 'bc3cbb180a0ca2a35eb2d9c278f6d3b3'
 1. Create a movies$ observable that would contain the response from the service.
 2. In your constructor initialise this observable with the response returned from the service.
 3. Use the for (control flow syntax) and display the `original_title` and `poster_path` attributes in your HTML. (Hint: append the `poster_path` to this URL to display the poster for the movies : https://image.tmdb.org/t/p/w200).
+
+!! Bonus point for adding styling and make the list look nice ( You are free to use plain css or frameworks like Bootstrap or CSS). !!
