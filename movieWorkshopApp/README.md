@@ -52,6 +52,6 @@ Upon clicking the poster image, additional details about the movie should be sho
 5. Now create a `movie$` observable which holds the detail from the `getMovie` function in your service and get the id from your route and initialise `movie$` with the value returned by the function (Hint: Look into how you can use `ActivatedRoute` to get stuff from the route). 
 6. Add some additional details about the movie for e.g. description and add a close button to this component so that you can use it to close and go back to the `/movies` route and display the movie list again.
 
-API endpoint for getting movie by ID: https://api.themoviedb.org/3/movie/${id} (id to be replaced by the selected movie's id.
+API endpoint for getting movie by ID: https://api.themoviedb.org/3/movie/${id} (id to be replaced by the selected movie's id ).
 
 !! As always make this look pretty using some styling magic for some brownie points !!
