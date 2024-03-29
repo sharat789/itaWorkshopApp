@@ -1,4 +1,4 @@
-# Task 1 
+# Task 1
 
 ## Create movie-list component
 
@@ -9,9 +9,9 @@
 
 ## Create service for fetching movies
 
-1. Create a service that fetches popular movies from the TMDB API. 
-    - Run `ng g s services/movie`
-2. Create a file `types.ts` in the app directory that will store the type that would be returned by the API (MovieSearchResponse) and the type that would be used to display those movie items (MovieListObject) (and other types). 
+1. Create a service that fetches popular movies from the TMDB API.
+   - Run `ng g s services/movie`
+2. Create a file `types.ts` in the app directory that will store the type that would be returned by the API (MovieSearchResponse) and the type that would be used to display those movie items (MovieListObject) (and other types).
 3. Create a function inside `movie.service.ts` called `getMovies()` that will call the API and fetch popular movies. Use the api key and the URL provided below. Pass the api key as parameter in the GET request. The function should return an Observable of type `MovieListObject`.
 4. Use this service in your `MovieListComponent` and call the `getMovies()` function and try subscribing it and console logging the result to see if the service works.
 
@@ -45,13 +45,21 @@ The movies component should be displayed at /movies endpoint.
 
 Upon clicking the poster image, additional details about the movie should be shown.
 
-1. Add a new component `movie-details` which would be used to show the movie details. 
+1. Add a new component `movie-details` which would be used to show the movie details.
 2. In the `movie.service` file add another function `getMovie` that takes an id as param and returns a single movie object based on the given id.
 3. Configure your `MovieListCmponent` to add id of the selected movie upon clicking the poster image.
 4. Update your routes to display MovieListComponent when we go to `/movies/movie/id` where id is the selected movie's id.
-5. Now create a `movie$` observable which holds the detail from the `getMovie` function in your service and get the id from your route and initialise `movie$` with the value returned by the function (Hint: Look into how you can use `ActivatedRoute` to get stuff from the route). 
+5. Now create a `movie$` observable which holds the detail from the `getMovie` function in your service and get the id from your route and initialise `movie$` with the value returned by the function (Hint: Look into how you can use `ActivatedRoute` to get stuff from the route).
 6. Add some additional details about the movie for e.g. description and add a close button to this component so that you can use it to close and go back to the `/movies` route and display the movie list again.
 
 API endpoint for getting movie by ID: https://api.themoviedb.org/3/movie/${id} (id to be replaced by the selected movie's id ).
 
 !! As always make this look pretty using some styling magic for some brownie points !!
+
+# Task 6
+
+## Add login component and authorization service
+
+1. Add a new `login` component which has a reactive form with two inputs for `username` and `password` and an `onSubmit` function for submitting the form.
+2. Create `auth` service which would have would have a function `login` take the form values from the `login` component and compare it and return true if the entered values are correct and false if not.
+3. Configure `onSubmit` function to call the `login` function from the service and if it's successful login redirect to '/movies' endpoint and an alert with 'login failed' if it's unsuccesful.
