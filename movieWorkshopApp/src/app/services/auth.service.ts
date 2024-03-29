@@ -7,6 +7,18 @@ export class AuthService {
   constructor() {}
 
   login(username: string, password: string): boolean {
-    return username === 'notJurgis' && password === 'notJurgis';
+    if (username === 'notJurgis' && password === 'notJurgis') {
+      localStorage.setItem('isAuthenticated', 'true');
+      return true;
+    }
+    return false;
+  }
+
+  logout(): void {
+    localStorage.removeItem('isAuthenticated');
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('isAuthenticated') === 'true';
   }
 }

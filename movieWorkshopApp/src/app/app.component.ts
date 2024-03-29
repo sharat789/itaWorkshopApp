@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 
 @Component({
@@ -7,8 +7,13 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
   standalone: true,
   imports: [RouterOutlet, MovieListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'movieWorkshopApp';
+  constructor(private router: Router) {}
+
+  logout() {
+    localStorage.removeItem('isAuthenticated');
+    this.router.navigate(['/login']);
+  }
 }

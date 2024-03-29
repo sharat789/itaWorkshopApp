@@ -62,4 +62,16 @@ API endpoint for getting movie by ID: https://api.themoviedb.org/3/movie/${id} (
 
 1. Add a new `login` component which has a reactive form with two inputs for `username` and `password` and an `onSubmit` function for submitting the form.
 2. Create `auth` service which would have would have a function `login` take the form values from the `login` component and compare it and return true if the entered values are correct and false if not.
-3. Configure `onSubmit` function to call the `login` function from the service and if it's successful login redirect to '/movies' endpoint and an alert with 'login failed' if it's unsuccesful.
+3. Configure routes so that an empty path redirects to '/login' and '/login' to LoginComponent.
+4. Configure `onSubmit` function to call the `login` function from the service and if it's successful login redirect to '/movies' endpoint and an alert with 'login failed' if it's unsuccesful.
+
+# Task 7
+
+## Add a canActivate functional guard
+
+The movies endpoint can be accessed even after we use the auth service, so as to make it inaccessible until you are logged in, we will use a canActivate guard.
+
+1. Use `ng g guard guards/auth` to generate `auth.guard.ts`.
+2. Change your service to have an `isLoggedIn()` method which would return if you're logged in or not. Also update the `login` function to add a value to the localStorage which would can be used in the `isLoggedIn()` function to check the status.
+3. Use the auth service in your guard and configure it so that if they are logged in they are able to access the movies enpoint and if not they stay on login endpoint ( Hint: look into how router.createUrlTree is used for guards ).
+4. Now update your routes file so that the movies endpoint uses the auth guard.
