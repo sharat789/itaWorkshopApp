@@ -1,22 +1,35 @@
-import { Component } from '@angular/core';
-import { MovieService } from '../../services/movie.service';
-import { Observable } from 'rxjs';
-import { MovieListObject } from '../../types';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MovieService } from '../../services/movie.service';
+import { Observable, Subject, of, takeUntil } from 'rxjs';
+import { MovieListObject } from '../../types';
 import { RouterLink } from '@angular/router';
+import { SearchService } from '../../services/search.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-movie-list',
-  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.scss', '../../app.component.scss' ]
+  standalone: true,
+  styleUrls: ['./movie-list.component.scss', '../../app.component.scss'],
 })
 export class MovieListComponent {
-  movies$: Observable<MovieListObject[]>
+  movies$: Observable<MovieListObject[]> = of([]);
+  #destroyRef = inject(DestroyRef);
 
-constructor(private movieService : MovieService){
-  this.movies$ = this.movieService.getMovies();
-}
-
+  constructor(
+    private movieService: MovieService,
+    private searchService: SearchService
+  ) {
+    this.searchService.searchObservable
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe((term) => {
+        if (term) {
+          this.movies$ = this.movieService.searchMovies(term);
+        } else {
+          this.movies$ = this.movieService.getMovies();
+        }
+      });
+  }
 }

@@ -1,29 +1,49 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { MovieListObject, MovieSearchResponse } from '../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MovieService {
-  private readonly apiKey = 'bc3cbb180a0ca2a35eb2d9c278f6d3b3';
-  private readonly baseUrl = 'https://api.themoviedb.org/3';
-  requiredParams = {
-    api_key: this.apiKey
-  }
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
+
+  private readonly api_key = 'bc3cbb180a0ca2a35eb2d9c278f6d3b3';
 
   getMovies(): Observable<MovieListObject[]> {
-    return this.httpClient.get<MovieSearchResponse>(`${this.baseUrl}/movie/popular`, {
-      params: this.requiredParams,
-    }).pipe(map((response) =>  response.results));
+    const requiredParameters = {
+      api_key: this.api_key,
+    };
+
+    return this.httpClient
+      .get<MovieSearchResponse>(
+        `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`,
+        {
+          params: requiredParameters,
+        }
+      )
+      .pipe(map((response) => response.results));
   }
 
-  getMovie(id : string): Observable<MovieListObject> {
-    return this.httpClient.get<MovieListObject>(`${this.baseUrl}/movie/${id}`, {
-      params: this.requiredParams
-    })
+  getMovie(id: string): Observable<MovieListObject> {
+    return this.httpClient.get<MovieListObject>(
+      `https://api.themoviedb.org/3/movie/${id}`,
+      {
+        params: {
+          api_key: this.api_key,
+        },
+      }
+    );
   }
-
+  searchMovies(term: string): Observable<MovieListObject[]> {
+    return this.httpClient
+      .get<MovieSearchResponse>(`https://api.themoviedb.org/3/search/movie`, {
+        params: {
+          api_key: this.api_key,
+          query: term,
+        },
+      })
+      .pipe(map((response) => response.results));
+  }
 }
