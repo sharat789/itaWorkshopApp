@@ -76,7 +76,7 @@ The movies endpoint can be accessed even after we use the auth service, so as to
 3. Use the auth service in your guard and configure it so that if they are logged in they are able to access the movies enpoint and if not they stay on login endpoint ( Hint: look into how router.createUrlTree is used for guards ).
 4. Now update your routes file so that the movies endpoint uses the auth guard.
 
-# Task 7
+# Task 8
 
 ## Add search functionality to get movies
 
