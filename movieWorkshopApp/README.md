@@ -75,3 +75,20 @@ The movies endpoint can be accessed even after we use the auth service, so as to
 2. Change your service to have an `isLoggedIn()` method which would return if you're logged in or not. Also update the `login` function to add a value to the localStorage which would can be used in the `isLoggedIn()` function to check the status.
 3. Use the auth service in your guard and configure it so that if they are logged in they are able to access the movies enpoint and if not they stay on login endpoint ( Hint: look into how router.createUrlTree is used for guards ).
 4. Now update your routes file so that the movies endpoint uses the auth guard.
+
+# Task 7
+
+## Add search functionality to get movies
+
+We can add a search bar to the navbar and use a reactive form to get movies by keywords.
+
+1. In your `app.component.html` right before the logout button add a reactive form which has one input field called `search` and a button to submit that search.
+2. Create a new search service that would pass this value from the search form from app component to movie component.
+3. Update your movie service to have a `searchMovies` function that takes in a query string and returns an array of movie based on that keyword.
+
+- API enpoint: https://api.themoviedb.org/3/search/movie
+- Pass the query inside your params with API Key and return the results.
+
+4. In your search service, you can use a BehaviorSubject of type string that will have the value of the searched term and make a function `setSearchTerm` which just takes in a string and set the value of that Subject using `.next`.
+5. In your app component listen to the value changes for your search input and pass that to the search service using `setSearchService` function.
+6. Now use the searchService in your movie component to conditionally render either searched movies or popular movies.
